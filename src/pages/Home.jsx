@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Search, MapPin, Phone, Clock, ArrowRight, Star, Calendar, ChevronRight } from "lucide-react";
+import { Search, MapPin, Phone, Clock, ArrowRight, Star, Calendar, ChevronRight, Building2, Stethoscope, Heart, Baby, Syringe, Dog, UserCircle } from "lucide-react";
 
 const featuredServices = [
   {
@@ -38,6 +38,63 @@ const testimonials = [
     role: "Patient",
     text: "Finding healthcare services has never been easier. This platform helped me locate the right specialist quickly.",
     rating: 5
+  }
+];
+
+const specializedServices = [
+  {
+    title: "Government Services",
+    description: "Access public healthcare programs, PhilHealth services, and medical assistance.",
+    icon: <Building2 className="h-8 w-8" />,
+    bgColor: "bg-blue-50",
+    accentColor: "bg-blue-500",
+    hoverColor: "text-blue-600",
+    features: ["PhilHealth Services", "Medical Assistance", "Health Programs"]
+  },
+  {
+    title: "Veterinary Care",
+    description: "Professional care for your pets with modern veterinary facilities and experienced doctors.",
+    icon: <Dog className="h-8 w-8" />,
+    bgColor: "bg-green-50",
+    accentColor: "bg-green-500",
+    hoverColor: "text-green-600",
+    features: ["Pet Checkups", "Animal Surgery", "Vaccination"]
+  },
+  {
+    title: "Dermatology",
+    description: "Expert skin care services and treatments from certified dermatologists.",
+    icon: <UserCircle className="h-8 w-8" />,
+    bgColor: "bg-purple-50",
+    accentColor: "bg-purple-500",
+    hoverColor: "text-purple-600",
+    features: ["Skin Treatments", "Aesthetic Services", "Consultations"]
+  },
+  {
+    title: "Cardiology",
+    description: "Comprehensive heart care with advanced diagnostic and treatment facilities.",
+    icon: <Heart className="h-8 w-8" />,
+    bgColor: "bg-red-50",
+    accentColor: "bg-red-500",
+    hoverColor: "text-red-600",
+    features: ["Heart Screening", "ECG Services", "Cardiac Care"]
+  },
+  {
+    title: "Pediatrics",
+    description: "Specialized healthcare for children from newborns to adolescents.",
+    icon: <Baby className="h-8 w-8" />,
+    bgColor: "bg-amber-50",
+    accentColor: "bg-amber-500",
+    hoverColor: "text-amber-600",
+    features: ["Child Healthcare", "Vaccinations", "Growth Monitoring"]
+  },
+  {
+    title: "Internal Medicine",
+    description: "Comprehensive adult healthcare and management of complex medical conditions.",
+    icon: <Stethoscope className="h-8 w-8" />,
+    bgColor: "bg-indigo-50",
+    accentColor: "bg-indigo-500",
+    hoverColor: "text-indigo-600",
+    features: ["Disease Management", "Health Screening", "Preventive Care"]
   }
 ];
 
@@ -188,6 +245,52 @@ const Home = () => {
                 <span className="text-sm text-muted-foreground">Best Services</span>
               </div>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Specialized Services */}
+      <section className="bg-gradient-to-b from-white via-gray-50 to-white py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold lg:text-4xl">Specialized Healthcare Services</h2>
+            <p className="mx-auto max-w-2xl text-muted-foreground">
+              Discover our wide range of specialized medical services provided by expert healthcare professionals
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {specializedServices.map((service, index) => (
+              <Card 
+                key={index} 
+                className="group relative overflow-hidden border-0 bg-white transition-all duration-300 hover:shadow-lg"
+              >
+                <div className={`absolute inset-x-0 top-0 h-1 ${service.accentColor}`} />
+                <CardHeader>
+                  <div className={`mb-6 inline-flex rounded-lg ${service.bgColor} p-3`}>
+                    {service.icon}
+                  </div>
+                  <CardTitle className="text-xl">{service.title}</CardTitle>
+                  <CardDescription>{service.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="mb-6 space-y-2">
+                    {service.features.map((feature, i) => (
+                      <li key={i} className="flex items-center gap-2 text-sm">
+                        <div className={`h-1.5 w-1.5 rounded-full ${service.accentColor}`} />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button 
+                    variant="ghost" 
+                    className={`w-full justify-between border-t pt-4 group-hover:${service.hoverColor}`}
+                  >
+                    Learn More 
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
