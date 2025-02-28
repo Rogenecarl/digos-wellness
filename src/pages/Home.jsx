@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Search, MapPin, Phone, Clock, ArrowRight, Star, Calendar, ChevronRight, Building2, Stethoscope, Heart, Baby, Syringe, Dog, UserCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const featuredServices = [
   {
@@ -191,9 +192,11 @@ const Home = () => {
                 </ul>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium text-primary">{service.stats}</span>
-                  <Button variant="ghost" className="group-hover:translate-x-1 transition-transform">
-                    View All <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <Link to={service.title === "Hospitals" ? "/hospitals" : "#"}>
+                    <Button variant="ghost" className="group-hover:translate-x-1 transition-transform">
+                      View All <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
