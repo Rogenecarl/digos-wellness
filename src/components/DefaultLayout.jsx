@@ -31,7 +31,7 @@ const DefaultLayout = () => {
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
           <div className="flex items-center gap-6">
             <Link to="/" className="flex items-center gap-2">
-              <div className="h-8 w-8 bg-gray-200 rounded-md">LOGO</div>
+              <div className="h-8 w-50 bg-gray-200 rounded-md">Wala pay Logo hehehe  </div>
             </Link>
           </div>
           <nav className="flex items-center gap-4 md:gap-6">

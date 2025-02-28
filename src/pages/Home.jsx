@@ -109,7 +109,7 @@ const Home = () => {
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-8">
             <div className="flex flex-col justify-center">
               <h1 className="mb-6 text-5xl font-bold tracking-tight text-primary lg:text-6xl">
-                Your Health, Our Priority
+                Digos Welness
               </h1>
               <p className="mb-8 text-xl text-muted-foreground">
                 Discover and connect with Digos City's premier healthcare providers.
@@ -192,7 +192,7 @@ const Home = () => {
                 </ul>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium text-primary">{service.stats}</span>
-                  <Link to={service.title === "Health Centers" ? "/health-center" : service.title === "Hospitals" ? "/hospitals" : "#"}>
+                  <Link to={service.title === "Health Centers" ? "/health-center" : service.title === "Hospitals" ? "/hospitals" : service.title === "Dental Clinics" ? "/dental" : "#"}>
                     <Button variant="ghost" className="group-hover:translate-x-1 transition-transform">
                       View All <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>

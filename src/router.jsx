@@ -4,6 +4,10 @@ import Home from "@/pages/Home";
 import HealthCenters from "@/pages/HealthCenters";
 import Hospitals from "@/pages/Hospitals";
 import DentalClinics from "@/pages/DentalClinics";
+import About from "@/pages/About";
+import GovtServices from "@/pages/GovtServices";
+import Veterinary from "@/pages/Veterinary";
+import Dermatologist from "@/pages/Dermatologist";  
 
 const router = createBrowserRouter([
   {
@@ -23,8 +27,24 @@ const router = createBrowserRouter([
         element: <Hospitals />,
       },
       {
-        path: "/dental-clinics",
+        path: "/dental",
         element: <DentalClinics />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/govt-services",
+        element: <GovtServices />,
+      },
+      {
+        path: "/veterinary",
+        element: <Veterinary />,
+      },
+      {
+        path: "/dermatologist",
+        element: <Dermatologist />,
       },
     ],
   },
