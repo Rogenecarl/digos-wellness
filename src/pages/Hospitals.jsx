@@ -173,7 +173,7 @@ const Hospitals = () => {
                   {hospital.specialties.map((specialty, index) => (
                     <span
                       key={index}
-                      className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+                      className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700"
                     >
                       {specialty}
                     </span>
@@ -188,7 +188,7 @@ const Hospitals = () => {
                   {hospital.facilities.map((facility, index) => (
                     <span
                       key={index}
-                      className="rounded-full bg-secondary/50 px-2 py-1 text-xs font-medium"
+                      className="rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700"
                     >
                       {facility}
                     </span>
@@ -198,7 +198,7 @@ const Hospitals = () => {
 
               {/* Action Buttons */}
               <div className="flex gap-2 pt-4">
-                <Button className="flex-1">Book Appointment</Button>
+                <Button className="flex-1 bg-green-600 hover:bg-green-700">Book Appointment</Button>
                 <Button variant="outline" className="flex-1">View Details</Button>
               </div>
             </CardContent>

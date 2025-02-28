@@ -192,7 +192,7 @@ const Home = () => {
                 </ul>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium text-primary">{service.stats}</span>
-                  <Link to={service.title === "Hospitals" ? "/hospitals" : "#"}>
+                  <Link to={service.title === "Health Centers" ? "/health-center" : service.title === "Hospitals" ? "/hospitals" : "#"}>
                     <Button variant="ghost" className="group-hover:translate-x-1 transition-transform">
                       View All <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
