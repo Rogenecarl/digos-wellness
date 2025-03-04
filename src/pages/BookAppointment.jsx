@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, Calendar, Clock, MapPin, Phone, User, Mail, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Clock, MapPin, Phone, User, Mail, Check, AlertCircle } from "lucide-react";
 import { format } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { toast } from "sonner";
 
 const BookAppointment = () => {
   const { type, id } = useParams();
@@ -13,12 +14,21 @@ const BookAppointment = () => {
   const [selectedService, setSelectedService] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     phone: "",
     email: "",
   });
+
+  // Validate route parameters
+  useEffect(() => {
+    if (!type || !id) {
+      navigate('/');
+      return;
+    }
+  }, [type, id, navigate]);
 
   const services = [
     { id: "primary", name: "Primary Care Consultation", description: "General check-up and consultation" },
@@ -44,7 +54,9 @@ const BookAppointment = () => {
 
   const handleBack = () => {
     if (currentStep === 1) {
-      navigate(-1);
+      const validTypes = ['dental', 'health-center', 'hospitals'];
+      const backPath = validTypes.includes(type) ? `/${type}/${id}` : '/';
+      navigate(backPath);
     } else {
       setCurrentStep((prev) => Math.max(prev - 1, 1));
     }
@@ -52,13 +64,37 @@ const BookAppointment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log({
-      service: selectedService,
-      date: selectedDate ? format(selectedDate, 'yyyy-MM-dd') : null,
-      time: selectedTime,
-      ...formData,
-    });
+    setShowConfirmModal(true);
+  };
+
+  const handleConfirmAppointment = () => {
+    try {
+      // Here you would typically make an API call to save the appointment
+      console.log({
+        service: selectedService,
+        date: selectedDate ? format(selectedDate, 'yyyy-MM-dd') : null,
+        time: selectedTime,
+        ...formData,
+      });
+
+      // Close modal
+      setShowConfirmModal(false);
+
+      // Show success toast
+      toast.success("Appointment Confirmed!", {
+        description: "Your appointment has been successfully scheduled. A confirmation email will be sent shortly.",
+      });
+
+      // Navigate back to the details page with proper validation
+      const validTypes = ['dental', 'health-center', 'hospitals'];
+      const backPath = validTypes.includes(type) ? `/${type}/${id}` : '/';
+      navigate(backPath);
+    } catch (error) {
+      console.error('Navigation error:', error);
+      toast.error("An error occurred", {
+        description: "Please try again or contact support if the problem persists.",
+      });
+    }
   };
 
   const getSelectedService = () => {
@@ -292,6 +328,57 @@ const BookAppointment = () => {
           </div>
         )}
       </div>
+
+      {/* Confirmation Modal */}
+      {showConfirmModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg max-w-md w-full mx-4 overflow-hidden">
+            <div className="p-6 space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <AlertCircle className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">Confirm Appointment</h3>
+                  <p className="text-sm text-muted-foreground">Are you sure you want to confirm this appointment?</p>
+                </div>
+              </div>
+
+              <div className="rounded-lg border bg-muted/50 p-4 space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Service:</span>
+                  <span className="font-medium">{getSelectedService()?.name}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Date & Time:</span>
+                  <span className="font-medium">
+                    {selectedDate ? format(selectedDate, 'MMMM d, yyyy') : ''} at {selectedTime}
+                  </span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Name:</span>
+                  <span className="font-medium">{formData.firstName} {formData.lastName}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t p-4 bg-muted/50 flex gap-3 justify-end">
+              <Button
+                variant="outline"
+                onClick={() => setShowConfirmModal(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                className="bg-green-600 hover:bg-green-700"
+                onClick={handleConfirmAppointment}
+              >
+                <Check className="mr-2 h-4 w-4" /> Confirm
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

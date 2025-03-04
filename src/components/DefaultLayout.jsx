@@ -2,6 +2,7 @@ import { Outlet, Link } from "react-router-dom";
 import { Clock, ArrowRight, TrendingUp, Newspaper, Menu, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Toaster } from "sonner";
 
 const recentBlogs = [
   {
@@ -29,6 +30,17 @@ const DefaultLayout = () => {
 
   return (
     <div className="min-h-screen bg-background scale-95 origin-top">
+      <Toaster 
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: 'white',
+            border: '1px solid #e2e8f0',
+            borderRadius: '0.5rem',
+          },
+          className: 'shadow-lg',
+        }}
+      />
       {/* Navigation Bar */}
       <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto max-w-[1800px] flex h-16 items-center justify-between px-2">
