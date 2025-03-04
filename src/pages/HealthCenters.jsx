@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Star, ArrowUpRight, Users, Stethoscope, Building2, Filter, SlidersHorizontal, Search } from "lucide-react";
 import NoImage from "@/components/NoImage";
+import { useNavigate } from "react-router-dom";
 
 const healthCenters = [
   {
@@ -146,7 +147,12 @@ const healthCenters = [
   }
 ];
 
+// Export healthCenters data
+export { healthCenters };
+
 const HealthCenters = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="space-y-6">
       {/* Header Section */}
@@ -215,7 +221,7 @@ const HealthCenters = () => {
       </div>
 
       {/* Health Center Cards Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
         {healthCenters.map((center) => (
           <Card key={center.id} className="group overflow-hidden hover:shadow-lg transition-all">
             {/* Center Image */}
@@ -277,6 +283,7 @@ const HealthCenters = () => {
                   variant="outline" 
                   size="sm" 
                   className="w-full text-xs h-7 hover:bg-primary/5 group"
+                  onClick={() => navigate(`/health-center/${center.id}`)}
                 >
                   View More 
                   <ArrowUpRight className="h-3 w-3 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
