@@ -268,10 +268,20 @@ const Hospitals = () => {
                 )}
               </div>
 
-              {/* Action Button */}
-              <Button size="sm" className="w-full text-xs h-7 bg-green-600 hover:bg-green-700">
-                Book Now
-              </Button>
+              {/* Action Buttons */}
+              <div className="space-y-2">
+                <Button size="sm" className="w-full text-xs h-7 bg-green-600 hover:bg-green-700">
+                  Book Now
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="w-full text-xs h-7 hover:bg-primary/5 group"
+                >
+                  View More 
+                  <ArrowUpRight className="h-3 w-3 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Button>
+              </div>
             </CardContent>
           </Card>
         ))}
