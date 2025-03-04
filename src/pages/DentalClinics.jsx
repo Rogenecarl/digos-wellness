@@ -296,7 +296,7 @@ const DentalClinics = () => {
 
               {/* Action Buttons */}
               <div className="space-y-2">
-                <Button size="sm" className="w-full text-xs h-7 bg-green-600 hover:bg-green-700">
+                <Button size="sm" className="w-full text-xs h-7 bg-blue-500 hover:bg-blue-700">
                   Book Now
                 </Button>
                 <Button 

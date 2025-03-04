@@ -59,7 +59,7 @@ const HealthcareDetails = ({ data }) => {
               </div>
               <div className="space-y-2">
                 <Button 
-                  className="w-full bg-green-600 hover:bg-green-700"
+                  className="w-full bg-blue-500 hover:bg-blue-700"
                   onClick={() => navigate(`/book-appointment/${data.type?.toLowerCase()}/${data.id}`)}
                 >
                   <Calendar className="mr-2 h-4 w-4" />
