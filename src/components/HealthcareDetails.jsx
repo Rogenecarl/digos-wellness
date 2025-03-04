@@ -65,13 +65,13 @@ const HealthcareDetails = ({ data }) => {
                   <Calendar className="mr-2 h-4 w-4" />
                   Book Appointment
                 </Button>
-                <Button 
+                {/* <Button 
                   variant="outline" 
                   size="sm" 
                   className="w-full text-xs h-7 hover:bg-primary/5 group"
                   onClick={() => navigate(`/dental/${clinic.id}`)}
                 >
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>
@@ -133,7 +133,7 @@ const HealthcareDetails = ({ data }) => {
           <div className="rounded-xl border bg-card">
             <div className="border-b p-4">
               <h2 className="text-xl font-semibold">
-                {data.specialties ? 'Specialties & Services' : 'Services Offered'}
+                {data.specialties ? 'Services Offered' : 'Services Offered'}
               </h2>
             </div>
             <div className="grid gap-4 p-4 sm:grid-cols-2">

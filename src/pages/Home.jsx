@@ -107,22 +107,20 @@ const specializedServices = [
 ];
 
 const heroImages = [
-  {
-    url: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=2091&auto=format&fit=crop",
-    alt: "Modern hospital building"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=2071&auto=format&fit=crop",
-    alt: "Medical professionals team"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=2070&auto=format&fit=crop",
-    alt: "Advanced medical equipment"
-  },
+
   {
     url: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=2232&auto=format&fit=crop",
     alt: "Healthcare consultation"
-  }
+  },
+  {
+    url: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2968&auto=format&fit=crop",
+    alt: "Contemporary hospital architecture"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1613377512409-59c33c10c821?q=80&w=2940&auto=format&fit=crop",
+    alt: "Modern healthcare facility design"
+  },
+
 ];
 
 const Home = () => {

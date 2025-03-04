@@ -34,11 +34,23 @@ const DefaultLayout = () => {
         position="top-right"
         toastOptions={{
           style: {
-            background: 'white',
-            border: '1px solid #e2e8f0',
-            borderRadius: '0.5rem',
+            background: '#f0fdf4',
+            border: '1px solid #bbf7d0',
+            color: '#166534',
+            borderRadius: '0.75rem',
+            fontSize: '0.875rem',
+            fontWeight: 500,
+            padding: '0.75rem 1rem',
           },
           className: 'shadow-lg',
+          duration: 3000,
+          success: {
+            icon: '✓',
+            iconTheme: {
+              primary: '#22c55e',
+              secondary: '#ffffff'
+            }
+          }
         }}
       />
       {/* Navigation Bar */}
@@ -46,7 +58,11 @@ const DefaultLayout = () => {
         <div className="container mx-auto max-w-[1800px] flex h-16 items-center justify-between px-2">
           <div className="flex items-center gap-6">
             <Link to="/" className="flex items-center gap-2">
-              <div className="h-8 w-10 bg-gray-200 rounded-md">Logo</div>
+              <img 
+                src="/digoswellnessWObg.png" 
+                alt="Digos Wellness Logo" 
+                className="h-12 w-auto"
+              />
             </Link>
           </div>
           
