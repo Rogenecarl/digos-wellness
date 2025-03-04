@@ -11,6 +11,7 @@ import About from "@/pages/About";
 import GovtServices from "@/pages/GovtServices";
 import Veterinary from "@/pages/Veterinary";
 import Dermatologist from "@/pages/Dermatologist";
+import BookAppointment from "@/pages/BookAppointment";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/dental/:id",
         element: <DentalClinicDetails />,
+      },
+      {
+        path: "/book-appointment/:type/:id",
+        element: <BookAppointment />,
       },
       {
         path: "/about",
