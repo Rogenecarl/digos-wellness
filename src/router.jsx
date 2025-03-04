@@ -17,6 +17,7 @@ import GovtServices from "@/pages/GovtServices";
 import Veterinary from "@/pages/Veterinary";
 import Dermatologist from "@/pages/Dermatologist";
 import BookAppointment from "@/pages/BookAppointment";
+import More from "./pages/More";
 
 const router = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
         path: "/dermatologist",
         element: <Dermatologist />,
       },
+      {
+        path: "/more",
+        element: <More />,
+      }
     ],
   },
 ]);
