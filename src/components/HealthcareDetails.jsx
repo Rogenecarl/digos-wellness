@@ -154,6 +154,34 @@ const HealthcareDetails = ({ data }) => {
               ))}
             </div>
           </div>
+
+          {/* About Us Section */}
+          <div className="rounded-xl border bg-card">
+            <div className="border-b p-4">
+              <h2 className="text-xl font-semibold">About Us</h2>
+            </div>
+            <div className="p-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {data.aboutUs}
+              </p>
+              {data.highlights && (
+                <div className="mt-4">
+                  <h3 className="mb-2 font-medium">Key Highlights</h3>
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    {data.highlights.map((highlight, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-3 rounded-lg border p-3 hover:bg-muted/50 transition-colors"
+                      >
+                        <div className="h-2 w-2 rounded-full bg-primary" />
+                        <span className="text-sm">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Sidebar */}

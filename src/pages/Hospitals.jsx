@@ -17,7 +17,9 @@ const hospitals = [
     hours: "24/7 Emergency Services",
     specialties: ["Emergency Care", "Surgery", "Pediatrics", "Cardiology"],
     facilities: ["ICU", "Operating Rooms", "Laboratory", "Pharmacy"],
-    color: "bg-blue-500"
+    color: "bg-blue-500",
+    aboutUs: "Digos City Medical Center is the region's premier healthcare institution, providing comprehensive medical services since 1980. Our hospital combines advanced medical technology with compassionate care to deliver the highest standard of healthcare to our community.",
+    highlights: ["Level 3 hospital facility", "24/7 emergency services", "Advanced surgical center", "Comprehensive medical care"]
   },
   {
     id: 2,
@@ -31,7 +33,9 @@ const hospitals = [
     hours: "Open 24 Hours",
     specialties: ["Internal Medicine", "Obstetrics", "Neurology", "Orthopedics"],
     facilities: ["MRI", "CT Scan", "Emergency Room", "Blood Bank"],
-    color: "bg-purple-500"
+    color: "bg-purple-500",
+    aboutUs: "St. Elizabeth Hospital has been serving the community with faith-based healthcare since 1975. We are committed to providing holistic healing that addresses both the physical and spiritual needs of our patients.",
+    highlights: ["Faith-based healthcare", "Modern diagnostic center", "Specialized departments", "Holistic patient care"]
   },
   {
     id: 3,
@@ -45,7 +49,9 @@ const hospitals = [
     hours: "24/7 Services",
     specialties: ["Oncology", "Cardiology", "Pulmonology", "Nephrology"],
     facilities: ["Cancer Center", "Cardiac Cath Lab", "Dialysis Unit", "ICU"],
-    color: "bg-green-500"
+    color: "bg-green-500",
+    aboutUs: "Digos Doctors Hospital is a specialty healthcare facility focusing on complex medical conditions. Our team of specialist physicians and advanced medical facilities enable us to handle challenging cases with expertise and precision.",
+    highlights: ["Specialist medical team", "Advanced treatment centers", "Research programs", "Specialized care units"]
   },
   {
     id: 4,
@@ -59,7 +65,9 @@ const hospitals = [
     hours: "Open 24/7",
     specialties: ["General Medicine", "Surgery", "Pediatrics", "OB-GYN"],
     facilities: ["Emergency Room", "Operating Rooms", "Laboratory", "Pharmacy"],
-    color: "bg-red-500"
+    color: "bg-red-500",
+    aboutUs: "South General Hospital provides accessible and affordable healthcare services to the southern region of Digos City. We maintain high standards of medical care while ensuring our services remain within reach of the community.",
+    highlights: ["Affordable healthcare", "Community focus", "General medical services", "Emergency care"]
   },
   {
     id: 5,
@@ -73,7 +81,9 @@ const hospitals = [
     hours: "24/7 Emergency Services",
     specialties: ["Trauma Care", "Neurosurgery", "Cardiology", "Oncology"],
     facilities: ["Trauma Center", "Brain & Spine Center", "Heart Center", "Cancer Center"],
-    color: "bg-indigo-500"
+    color: "bg-indigo-500",
+    aboutUs: "Mindanao Medical Center is a leading tertiary care hospital equipped with cutting-edge medical technology and staffed by the region's top medical professionals. We serve as a referral center for complex medical cases across Mindanao.",
+    highlights: ["Tertiary care services", "Advanced medical technology", "Regional referral center", "Specialized centers of excellence"]
   },
   {
     id: 6,
@@ -87,7 +97,9 @@ const hospitals = [
     hours: "Open 24 Hours",
     specialties: ["Pediatrics", "Child Surgery", "Neonatology", "Child Psychology"],
     facilities: ["NICU", "Pediatric ICU", "Child-friendly Rooms", "Play Areas"],
-    color: "bg-pink-500"
+    color: "bg-pink-500",
+    aboutUs: "Holy Child Hospital specializes in pediatric care, providing comprehensive medical services for children from newborns to adolescents. Our child-friendly environment and specialized staff ensure the best care for our young patients.",
+    highlights: ["Pediatric specialization", "Child-friendly facilities", "Specialized child care", "Family-centered approach"]
   },
   {
     id: 7,
@@ -101,7 +113,9 @@ const hospitals = [
     hours: "24/7 Emergency Services",
     specialties: ["Emergency Medicine", "Internal Medicine", "Surgery", "Diagnostics"],
     facilities: ["Modern ER", "Diagnostic Center", "Surgery Suite", "Recovery Rooms"],
-    color: "bg-teal-500"
+    color: "bg-teal-500",
+    aboutUs: "Metro Digos Hospital serves the urban population with modern medical facilities and comprehensive healthcare services. We focus on providing quick, efficient, and quality medical care to meet the demands of city life.",
+    highlights: ["Urban healthcare center", "Quick emergency response", "Modern facilities", "Efficient medical services"]
   },
   {
     id: 8,
@@ -115,7 +129,9 @@ const hospitals = [
     hours: "Open 24 Hours",
     specialties: ["Family Medicine", "Orthopedics", "ENT", "Dermatology"],
     facilities: ["Wellness Center", "Rehabilitation", "Laboratory", "Pharmacy"],
-    color: "bg-orange-500"
+    color: "bg-orange-500",
+    aboutUs: "Wellness General Hospital promotes a holistic approach to health and healing. We combine traditional medical services with wellness programs to help our patients achieve and maintain optimal health.",
+    highlights: ["Wellness programs", "Holistic healthcare", "Rehabilitation services", "Preventive care focus"]
   },
   {
     id: 9,
@@ -129,7 +145,9 @@ const hospitals = [
     hours: "24/7 Services",
     specialties: ["Cardiology", "Pulmonology", "Neurology", "Gastroenterology"],
     facilities: ["Heart Center", "Pulmonary Unit", "Neuro Lab", "GI Center"],
-    color: "bg-cyan-500"
+    color: "bg-cyan-500",
+    aboutUs: "Sacred Heart Hospital specializes in cardiovascular and pulmonary care, offering advanced diagnostic and treatment services. Our dedicated teams of specialists work together to provide comprehensive care for complex medical conditions.",
+    highlights: ["Cardiac excellence", "Specialized care units", "Advanced diagnostics", "Expert medical team"]
   },
   {
     id: 10,
@@ -143,7 +161,9 @@ const hospitals = [
     hours: "24/7 Emergency Services",
     specialties: ["Oncology", "Hematology", "Radiation Therapy", "Pain Management"],
     facilities: ["Cancer Center", "Blood Bank", "Radiation Unit", "Pain Clinic"],
-    color: "bg-rose-500"
+    color: "bg-rose-500",
+    aboutUs: "Hope Medical Center is dedicated to providing comprehensive cancer care and support services. Our integrated approach combines advanced treatment options with compassionate care to give hope and healing to cancer patients.",
+    highlights: ["Cancer care specialty", "Support services", "Advanced treatments", "Comprehensive care"]
   }
 ];
 

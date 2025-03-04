@@ -17,7 +17,9 @@ const healthCenters = [
     hours: "Mon-Fri: 8AM-5PM",
     services: ["General Checkup", "Vaccinations", "Maternal Care", "Child Health"],
     facilities: ["Laboratory", "Pharmacy", "Consultation Rooms", "Treatment Area"],
-    color: "bg-emerald-500"
+    color: "bg-emerald-500",
+    aboutUs: "Digos City Health Center is the primary public healthcare facility serving the community since 1985. We are committed to providing accessible, quality healthcare services to all residents, with a focus on preventive care and public health programs.",
+    highlights: ["Comprehensive public health programs", "Free basic healthcare services", "Community outreach initiatives", "Government healthcare partner"]
   },
   {
     id: 2,
@@ -31,7 +33,9 @@ const healthCenters = [
     hours: "Mon-Sat: 7AM-4PM",
     services: ["Primary Care", "Family Planning", "Immunization", "Health Education"],
     facilities: ["Medical Records", "Birthing Facility", "First Aid Station", "Pharmacy"],
-    color: "bg-blue-500"
+    color: "bg-blue-500",
+    aboutUs: "Serving the San Jose community, our health center focuses on providing essential healthcare services at the barangay level. We work closely with local health workers to ensure healthcare reaches every household in our community.",
+    highlights: ["Local community focus", "Active health workers", "Family health programs", "Accessible location"]
   },
   {
     id: 3,
@@ -45,7 +49,9 @@ const healthCenters = [
     hours: "Mon-Fri: 8AM-4PM",
     services: ["Public Health Programs", "Dental Services", "Prenatal Care", "Child Vaccination"],
     facilities: ["Dental Clinic", "Medicine Storage", "Emergency Room", "Consultation Area"],
-    color: "bg-indigo-500"
+    color: "bg-indigo-500",
+    aboutUs: "The Digos Rural Health Unit specializes in bringing quality healthcare to rural communities. Our facility serves as a vital link between remote areas and the city's healthcare system, ensuring rural residents have access to essential medical services.",
+    highlights: ["Rural healthcare focus", "Mobile health services", "Community health education", "Emergency response capability"]
   },
   {
     id: 4,
@@ -59,7 +65,9 @@ const healthCenters = [
     hours: "Mon-Fri: 7AM-3PM",
     services: ["Basic Healthcare", "Nutrition Program", "Senior Care", "First Aid"],
     facilities: ["Treatment Room", "Records Section", "Medicine Dispensary", "Waiting Area"],
-    color: "bg-purple-500"
+    color: "bg-purple-500",
+    aboutUs: "Tres De Mayo Health Center is dedicated to serving the diverse healthcare needs of our local community. We emphasize preventive care and health education, working to build a healthier neighborhood through accessible medical services.",
+    highlights: ["Community-based care", "Preventive health focus", "Senior wellness programs", "Health education initiatives"]
   },
   {
     id: 5,
@@ -73,7 +81,9 @@ const healthCenters = [
     hours: "Mon-Sat: 8AM-5PM",
     services: ["Primary Healthcare", "Mental Health", "Physical Therapy", "Health Screening"],
     facilities: ["Therapy Room", "Counseling Room", "Laboratory", "Pharmacy"],
-    color: "bg-teal-500"
+    color: "bg-teal-500",
+    aboutUs: "Soong Integrated Health Center takes a holistic approach to healthcare, combining physical and mental health services. Our integrated care model ensures comprehensive treatment addressing both body and mind wellness.",
+    highlights: ["Holistic healthcare approach", "Mental health services", "Rehabilitation programs", "Integrated care model"]
   },
   {
     id: 6,
@@ -87,7 +97,9 @@ const healthCenters = [
     hours: "Mon-Fri: 8AM-4PM",
     services: ["Basic Medical Care", "Women's Health", "Child Care", "Health Education"],
     facilities: ["Examination Rooms", "Storage Facility", "Records Area", "Meeting Room"],
-    color: "bg-cyan-500"
+    color: "bg-cyan-500",
+    aboutUs: "Dawis Public Health Center specializes in women's and children's health services while providing essential public health care. We strive to create a supportive environment for families seeking medical attention and health guidance.",
+    highlights: ["Women's health focus", "Child wellness programs", "Family planning services", "Health education workshops"]
   },
   {
     id: 7,
@@ -101,7 +113,9 @@ const healthCenters = [
     hours: "Mon-Sat: 8AM-4PM",
     services: ["Primary Care", "Maternal Health", "Child Immunization", "Health Education"],
     facilities: ["Consultation Rooms", "Immunization Area", "Records Section", "Waiting Area"],
-    color: "bg-pink-500"
+    color: "bg-pink-500",
+    aboutUs: "Cogon Community Health Center is committed to providing essential healthcare services to our local community. We prioritize maternal and child health while offering comprehensive primary care services to all residents.",
+    highlights: ["Strong community ties", "Maternal care expertise", "Child health programs", "Health awareness campaigns"]
   },
   {
     id: 8,
@@ -115,7 +129,9 @@ const healthCenters = [
     hours: "Mon-Fri: 7AM-4PM",
     services: ["General Healthcare", "Family Planning", "Child Care", "First Aid"],
     facilities: ["Treatment Room", "Medicine Storage", "Consultation Area", "Records Room"],
-    color: "bg-orange-500"
+    color: "bg-orange-500",
+    aboutUs: "Aplaya Health Center serves the coastal community with dedicated healthcare services. Our facility is equipped to handle primary care needs while focusing on the unique health challenges of our seaside location.",
+    highlights: ["Coastal community focus", "Environmental health programs", "Emergency response ready", "Family health services"]
   },
   {
     id: 9,
@@ -129,7 +145,9 @@ const healthCenters = [
     hours: "Mon-Sat: 8AM-5PM",
     services: ["Basic Healthcare", "Maternal Care", "Child Health", "Health Education"],
     facilities: ["Consultation Room", "Treatment Area", "Records Section", "Waiting Room"],
-    color: "bg-rose-500"
+    color: "bg-rose-500",
+    aboutUs: "Sinawilan Health Unit provides essential healthcare services to our rural community. We focus on making quality healthcare accessible to all residents while promoting preventive care and healthy living practices.",
+    highlights: ["Rural healthcare access", "Preventive care programs", "Community outreach", "Health education focus"]
   },
   {
     id: 10,
@@ -143,7 +161,9 @@ const healthCenters = [
     hours: "Mon-Fri: 8AM-5PM",
     services: ["Primary Care", "Emergency Care", "Maternal Health", "Child Services"],
     facilities: ["Emergency Room", "Birthing Facility", "Laboratory", "Pharmacy"],
-    color: "bg-green-500"
+    color: "bg-green-500",
+    aboutUs: "Matti District Health Center is a comprehensive healthcare facility serving one of Digos City's largest districts. We provide a wide range of medical services including emergency care and specialized maternal and child health programs.",
+    highlights: ["District-wide coverage", "Emergency services", "Maternal and child care", "Laboratory services"]
   }
 ];
 
