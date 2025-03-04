@@ -2,6 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Search, MapPin, Phone, Clock, ArrowRight, Star, Calendar, ChevronRight, Building2, Stethoscope, Heart, Baby, Syringe, Dog, UserCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
 
 const featuredServices = [
   {
@@ -99,9 +106,32 @@ const specializedServices = [
   }
 ];
 
+const heroImages = [
+  {
+    url: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=2091&auto=format&fit=crop",
+    alt: "Modern hospital building"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=2071&auto=format&fit=crop",
+    alt: "Medical professionals team"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=2070&auto=format&fit=crop",
+    alt: "Advanced medical equipment"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=2232&auto=format&fit=crop",
+    alt: "Healthcare consultation"
+  }
+];
+
 const Home = () => {
+  const plugin = useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: false })
+  );
+
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col scale-95 origin-top">
       {/* Hero Section */}
       <section className="relative min-h-[600px] overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50">
         <div className="absolute inset-0 bg-grid-black/5" />
@@ -109,7 +139,7 @@ const Home = () => {
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-8">
             <div className="flex flex-col justify-center">
               <h1 className="mb-6 text-5xl font-bold tracking-tight text-primary lg:text-6xl">
-                Digos Welness
+                Digos Wellness
               </h1>
               <p className="mb-8 text-xl text-muted-foreground">
                 Discover and connect with Digos City's premier healthcare providers.
@@ -123,7 +153,7 @@ const Home = () => {
                   <Phone className="h-4 w-4" /> Emergency: 911
                 </Button>
               </div>
-              <div className="mt-12 flex items-center gap-8 text-sm text-muted-foreground">
+              <div className="mt-12 flex flex-wrap items-center gap-8 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4" /> 24/7 Support
                 </div>
@@ -134,11 +164,31 @@ const Home = () => {
             </div>
             <div className="relative hidden lg:block">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-3xl" />
-              <img
-                src="/hero-image.jpg"
-                alt="Healthcare"
-                className="relative rounded-2xl object-cover shadow-2xl"
-              />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <Carousel
+                  plugins={[plugin.current]}
+                  className="w-full"
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                >
+                  <CarouselContent>
+                    {heroImages.map((image, index) => (
+                      <CarouselItem key={index}>
+                        <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
+                          <img
+                            src={image.url}
+                            alt={image.alt}
+                            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+              </div>
             </div>
           </div>
         </div>

@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { MapPin, Phone, Clock, Star, ArrowUpRight, Users, Stethoscope, Building2, Syringe } from "lucide-react";
+import { MapPin, Phone, Clock, Star, ArrowUpRight, Users, Stethoscope, Building2, Filter, SlidersHorizontal, Search } from "lucide-react";
+import NoImage from "@/components/NoImage";
 
 const healthCenters = [
   {
     id: 1,
     name: "Digos City Health Center",
-    image: "/health-center1.jpg",
+    image: "/no-image-available.jpg",
     rating: 4.7,
     reviews: 89,
     type: "Primary Healthcare Center",
@@ -14,12 +15,13 @@ const healthCenters = [
     contact: "(082) 553-1234",
     hours: "Mon-Fri: 8AM-5PM",
     services: ["General Checkup", "Vaccinations", "Maternal Care", "Child Health"],
-    facilities: ["Laboratory", "Pharmacy", "Consultation Rooms", "Treatment Area"]
+    facilities: ["Laboratory", "Pharmacy", "Consultation Rooms", "Treatment Area"],
+    color: "bg-emerald-500"
   },
   {
     id: 2,
     name: "Barangay San Jose Health Center",
-    image: "/health-center2.jpg",
+    image: "/no-image-available.jpg",
     rating: 4.6,
     reviews: 76,
     type: "Community Health Center",
@@ -27,12 +29,13 @@ const healthCenters = [
     contact: "(082) 553-5678",
     hours: "Mon-Sat: 7AM-4PM",
     services: ["Primary Care", "Family Planning", "Immunization", "Health Education"],
-    facilities: ["Medical Records", "Birthing Facility", "First Aid Station", "Pharmacy"]
+    facilities: ["Medical Records", "Birthing Facility", "First Aid Station", "Pharmacy"],
+    color: "bg-blue-500"
   },
   {
     id: 3,
     name: "Digos Rural Health Unit",
-    image: "/health-center3.jpg",
+    image: "/no-image-available.jpg",
     rating: 4.8,
     reviews: 112,
     type: "Rural Health Center",
@@ -40,12 +43,13 @@ const healthCenters = [
     contact: "(082) 553-9012",
     hours: "Mon-Fri: 8AM-4PM",
     services: ["Public Health Programs", "Dental Services", "Prenatal Care", "Child Vaccination"],
-    facilities: ["Dental Clinic", "Medicine Storage", "Emergency Room", "Consultation Area"]
+    facilities: ["Dental Clinic", "Medicine Storage", "Emergency Room", "Consultation Area"],
+    color: "bg-indigo-500"
   },
   {
     id: 4,
     name: "Tres De Mayo Health Center",
-    image: "/health-center4.jpg",
+    image: "/no-image-available.jpg",
     rating: 4.5,
     reviews: 67,
     type: "Community Health Center",
@@ -53,12 +57,13 @@ const healthCenters = [
     contact: "(082) 553-3456",
     hours: "Mon-Fri: 7AM-3PM",
     services: ["Basic Healthcare", "Nutrition Program", "Senior Care", "First Aid"],
-    facilities: ["Treatment Room", "Records Section", "Medicine Dispensary", "Waiting Area"]
+    facilities: ["Treatment Room", "Records Section", "Medicine Dispensary", "Waiting Area"],
+    color: "bg-purple-500"
   },
   {
     id: 5,
     name: "Soong Integrated Health Center",
-    image: "/health-center5.jpg",
+    image: "/no-image-available.jpg",
     rating: 4.7,
     reviews: 94,
     type: "Integrated Health Facility",
@@ -66,12 +71,13 @@ const healthCenters = [
     contact: "(082) 553-7890",
     hours: "Mon-Sat: 8AM-5PM",
     services: ["Primary Healthcare", "Mental Health", "Physical Therapy", "Health Screening"],
-    facilities: ["Therapy Room", "Counseling Room", "Laboratory", "Pharmacy"]
+    facilities: ["Therapy Room", "Counseling Room", "Laboratory", "Pharmacy"],
+    color: "bg-teal-500"
   },
   {
     id: 6,
     name: "Dawis Public Health Center",
-    image: "/health-center6.jpg",
+    image: "/no-image-available.jpg",
     rating: 4.6,
     reviews: 83,
     type: "Public Health Facility",
@@ -79,140 +85,193 @@ const healthCenters = [
     contact: "(082) 553-2345",
     hours: "Mon-Fri: 8AM-4PM",
     services: ["Basic Medical Care", "Women's Health", "Child Care", "Health Education"],
-    facilities: ["Examination Rooms", "Storage Facility", "Records Area", "Meeting Room"]
+    facilities: ["Examination Rooms", "Storage Facility", "Records Area", "Meeting Room"],
+    color: "bg-cyan-500"
+  },
+  {
+    id: 7,
+    name: "Cogon Community Health Center",
+    image: "/no-image-available.jpg",
+    rating: 4.5,
+    reviews: 71,
+    type: "Community Health Center",
+    address: "Cogon District, Digos City",
+    contact: "(082) 553-4567",
+    hours: "Mon-Sat: 8AM-4PM",
+    services: ["Primary Care", "Maternal Health", "Child Immunization", "Health Education"],
+    facilities: ["Consultation Rooms", "Immunization Area", "Records Section", "Waiting Area"],
+    color: "bg-pink-500"
+  },
+  {
+    id: 8,
+    name: "Aplaya Health Center",
+    image: "/no-image-available.jpg",
+    rating: 4.7,
+    reviews: 88,
+    type: "Primary Health Center",
+    address: "Aplaya Area, Digos City",
+    contact: "(082) 553-8901",
+    hours: "Mon-Fri: 7AM-4PM",
+    services: ["General Healthcare", "Family Planning", "Child Care", "First Aid"],
+    facilities: ["Treatment Room", "Medicine Storage", "Consultation Area", "Records Room"],
+    color: "bg-orange-500"
+  },
+  {
+    id: 9,
+    name: "Sinawilan Health Unit",
+    image: "/no-image-available.jpg",
+    rating: 4.6,
+    reviews: 79,
+    type: "Rural Health Unit",
+    address: "Sinawilan, Digos City",
+    contact: "(082) 553-2345",
+    hours: "Mon-Sat: 8AM-5PM",
+    services: ["Basic Healthcare", "Maternal Care", "Child Health", "Health Education"],
+    facilities: ["Consultation Room", "Treatment Area", "Records Section", "Waiting Room"],
+    color: "bg-rose-500"
+  },
+  {
+    id: 10,
+    name: "Matti District Health Center",
+    image: "/no-image-available.jpg",
+    rating: 4.8,
+    reviews: 95,
+    type: "District Health Center",
+    address: "Matti District, Digos City",
+    contact: "(082) 553-6789",
+    hours: "Mon-Fri: 8AM-5PM",
+    services: ["Primary Care", "Emergency Care", "Maternal Health", "Child Services"],
+    facilities: ["Emergency Room", "Birthing Facility", "Laboratory", "Pharmacy"],
+    color: "bg-green-500"
   }
 ];
 
 const HealthCenters = () => {
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Header Section */}
-      <div className="flex flex-col gap-4">
-        <h1 className="text-4xl font-bold">Health Centers in Digos City</h1>
-        <p className="text-lg text-muted-foreground">
-          Access quality primary healthcare services at your local community health centers
-        </p>
-        <div className="flex items-center gap-8 text-sm text-muted-foreground">
+      <div className="flex items-center justify-between">
+        <div className="space-y-1">
+          <h1 className="text-3xl font-bold">Health Centers in Digos City</h1>
+          <p className="text-base text-muted-foreground">
+            Access quality primary healthcare services at your local community
+          </p>
+        </div>
+        <div className="flex items-center gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <Building2 className="h-4 w-4" />
-            <span>25+ Health Centers</span>
+            <span>25+ Centers</span>
           </div>
           <div className="flex items-center gap-2">
             <Stethoscope className="h-4 w-4" />
-            <span>100+ Healthcare Workers</span>
+            <span>100+ Staff</span>
           </div>
           <div className="flex items-center gap-2">
             <Users className="h-4 w-4" />
-            <span>500+ Monthly Patients</span>
+            <span>500+ Monthly</span>
           </div>
         </div>
       </div>
 
-      {/* Search and Filters */}
-      <div className="flex flex-wrap items-center gap-4 rounded-lg border bg-card p-4">
-        <div className="flex-1">
-          <input
-            type="search"
-            placeholder="Search health centers by name, service, or location..."
-            className="w-full rounded-md border px-3 py-2 text-sm"
-          />
+      {/* Advanced Filters */}
+      <div className="grid gap-4 rounded-xl border bg-card p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex-1">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <input
+                type="search"
+                placeholder="Search health centers by name, service, or location..."
+                className="w-full rounded-lg border bg-background px-9 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+            </div>
+          </div>
+          <Button variant="outline" size="sm" className="ml-2">
+            <SlidersHorizontal className="mr-2 h-4 w-4" />
+            Filters
+          </Button>
+          <Button size="sm" className="ml-2">Search</Button>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <Button variant="outline" size="sm" className="whitespace-nowrap">
-            <Syringe className="mr-2 h-4 w-4" />
-            Vaccination Centers
+          <Button variant="outline" size="sm" className="rounded-full">
+            All Centers
           </Button>
-          <Button variant="outline" size="sm" className="whitespace-nowrap">
-            <Clock className="mr-2 h-4 w-4" />
-            Open Now
+          <Button variant="outline" size="sm" className="rounded-full">
+            Vaccinations
           </Button>
-          <Button>Search</Button>
+          <Button variant="outline" size="sm" className="rounded-full">
+            Primary Care
+          </Button>
+          <Button variant="outline" size="sm" className="rounded-full">
+            Maternal Care
+          </Button>
+          <Button variant="outline" size="sm" className="rounded-full">
+            Child Health
+          </Button>
+          <Button variant="outline" size="sm" className="rounded-full">
+            More Filters +
+          </Button>
         </div>
       </div>
 
       {/* Health Center Cards Grid */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {healthCenters.map((center) => (
-          <Card key={center.id} className="group overflow-hidden">
-            {/* Health Center Image */}
-            <div className="relative aspect-video overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              <img
-                src={center.image}
-                alt={center.name}
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white">
-                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+          <Card key={center.id} className="group overflow-hidden hover:shadow-lg transition-all">
+            {/* Center Image */}
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <div className={`absolute inset-0 bg-gradient-to-t from-${center.color}/80 to-transparent opacity-90`} />
+              <NoImage />
+              <div className="absolute bottom-2 left-2 flex items-center gap-1 text-white text-sm">
+                <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                 <span className="font-medium">{center.rating}</span>
-                <span className="text-sm opacity-80">({center.reviews} reviews)</span>
+                <span className="text-xs">({center.reviews})</span>
               </div>
             </div>
 
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <div>
-                  <CardTitle className="group-hover:text-primary">{center.name}</CardTitle>
-                  <CardDescription className="mt-1">{center.type}</CardDescription>
-                </div>
-                <Button size="icon" variant="ghost" className="rounded-full">
-                  <ArrowUpRight className="h-5 w-5" />
-                </Button>
+            <CardHeader className="p-3">
+              <div className="space-y-1">
+                <CardTitle className="text-sm line-clamp-1 group-hover:text-primary">
+                  {center.name}
+                </CardTitle>
+                <CardDescription className="text-xs">{center.type}</CardDescription>
               </div>
             </CardHeader>
 
-            <CardContent className="space-y-4">
+            <CardContent className="p-3 pt-0 space-y-3">
               {/* Contact Info */}
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <MapPin className="h-4 w-4" />
-                  <span>{center.address}</span>
+              <div className="space-y-1 text-xs">
+                <div className="flex items-center gap-1 text-muted-foreground">
+                  <MapPin className="h-3 w-3 flex-shrink-0" />
+                  <span className="truncate">{center.address}</span>
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Phone className="h-4 w-4" />
-                  <span>{center.contact}</span>
-                </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Clock className="h-4 w-4" />
-                  <span>{center.hours}</span>
+                <div className="flex items-center gap-1 text-muted-foreground">
+                  <Clock className="h-3 w-3 flex-shrink-0" />
+                  <span className="truncate">{center.hours}</span>
                 </div>
               </div>
 
               {/* Services */}
-              <div>
-                <h4 className="mb-2 text-sm font-medium">Available Services</h4>
-                <div className="flex flex-wrap gap-2">
-                  {center.services.map((service, index) => (
-                    <span
-                      key={index}
-                      className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700"
-                    >
-                      {service}
-                    </span>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-1">
+                {center.services.slice(0, 2).map((service, index) => (
+                  <span
+                    key={index}
+                    className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary"
+                  >
+                    {service}
+                  </span>
+                ))}
+                {center.services.length > 2 && (
+                  <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium">
+                    +{center.services.length - 2}
+                  </span>
+                )}
               </div>
 
-              {/* Facilities */}
-              <div>
-                <h4 className="mb-2 text-sm font-medium">Facilities</h4>
-                <div className="flex flex-wrap gap-2">
-                  {center.facilities.map((facility, index) => (
-                    <span
-                      key={index}
-                      className="rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700"
-                    >
-                      {facility}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex gap-2 pt-4">
-                <Button className="flex-1 bg-green-600 hover:bg-green-700">Book Appointment</Button>
-                <Button variant="outline" className="flex-1">More Info</Button>
-              </div>
+              {/* Action Button */}
+              <Button size="sm" className="w-full text-xs h-7 bg-green-600 hover:bg-green-700">
+                Book Now
+              </Button>
             </CardContent>
           </Card>
         ))}
