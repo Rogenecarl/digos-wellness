@@ -6,6 +6,39 @@ import { format } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
+
+const formTransition = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 }
+};
+
+const stepVariants = {
+  active: {
+    scale: 1.1,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 20
+    }
+  },
+  inactive: {
+    scale: 1,
+    transition: {
+      duration: 0.3
+    }
+  }
+};
+
+const serviceVariants = {
+  hover: {
+    scale: 1.02,
+    transition: {
+      duration: 0.2
+    }
+  }
+};
 
 const BookAppointment = () => {
   const { type, id } = useParams();
@@ -102,137 +135,202 @@ const BookAppointment = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
-      {/* Progress Steps */}
-      <div className="mb-8">
+    <motion.div 
+      className="max-w-3xl mx-auto"
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={formTransition}
+    >
+      {/* Progress Steps with enhanced styling */}
+      <div className="mb-12">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Button
               variant="ghost"
-              className="gap-2"
+              className="gap-2 hover:bg-primary/5 transition-colors duration-300"
               onClick={handleBack}
             >
               <ArrowLeft className="h-4 w-4" /> Back
             </Button>
           </div>
-          <div className="hidden sm:flex items-center gap-4 text-sm">
-            <div className={`flex items-center gap-2 ${currentStep >= 1 ? "text-primary" : "text-muted-foreground"}`}>
-              <div className={`h-8 w-8 rounded-full flex items-center justify-center ${currentStep >= 1 ? "bg-primary text-white" : "bg-muted"}`}>1</div>
-              <span>Choose Appointment</span>
-            </div>
-            <div className={`h-px w-12 ${currentStep >= 2 ? "bg-primary" : "bg-muted"}`} />
-            <div className={`flex items-center gap-2 ${currentStep >= 2 ? "text-primary" : "text-muted-foreground"}`}>
-              <div className={`h-8 w-8 rounded-full flex items-center justify-center ${currentStep >= 2 ? "bg-primary text-white" : "bg-muted"}`}>2</div>
-              <span>Your Info</span>
-            </div>
-            <div className={`h-px w-12 ${currentStep >= 3 ? "bg-primary" : "bg-muted"}`} />
-            <div className={`flex items-center gap-2 ${currentStep >= 3 ? "text-primary" : "text-muted-foreground"}`}>
-              <div className={`h-8 w-8 rounded-full flex items-center justify-center ${currentStep >= 3 ? "bg-primary text-white" : "bg-muted"}`}>3</div>
-              <span>Confirmation</span>
-            </div>
+          <div className="hidden sm:flex items-center justify-center w-full max-w-2xl mx-auto">
+            {[
+              { step: 1, label: "Choose Appointment", icon: Calendar },
+              { step: 2, label: "Your Info", icon: User },
+              { step: 3, label: "Confirmation", icon: Check }
+            ].map((item, index) => (
+              <div key={item.step} className="flex items-center flex-1">
+                {index > 0 && (
+                  <div className="flex-1 mx-2">
+                    <div 
+                      className={`h-1 transition-all duration-500 ${
+                        currentStep >= item.step ? "bg-primary" : "bg-muted"
+                      }`} 
+                    />
+                  </div>
+                )}
+                <motion.div 
+                  className={`flex flex-col items-center gap-2 transition-colors duration-300 ${
+                    currentStep >= item.step ? "text-primary" : "text-muted-foreground"
+                  }`}
+                  variants={stepVariants}
+                  animate={currentStep >= item.step ? "active" : "inactive"}
+                >
+                  <div 
+                    className={`h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      currentStep >= item.step 
+                        ? "bg-primary text-white shadow-lg shadow-primary/30" 
+                        : "bg-muted"
+                    }`}
+                  >
+                    {<item.icon className="h-5 w-5" />}
+                  </div>
+                  <span className="text-sm font-medium whitespace-nowrap">{item.label}</span>
+                </motion.div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Step Content */}
+      {/* Step Content with enhanced animations */}
       <div className="space-y-6">
         {currentStep === 1 && (
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-2xl font-semibold mb-2">Choose Appointment</h2>
-              <p className="text-muted-foreground">Please choose the type of service that you will be availing.</p>
+          <motion.div 
+            className="space-y-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <div className="text-center max-w-xl mx-auto">
+              <h2 className="text-2xl font-semibold mb-3">Choose Your Service</h2>
+              <p className="text-muted-foreground">Select the type of service you'd like to book an appointment for.</p>
             </div>
 
-            <div className="grid gap-4">
+            <div className="grid gap-4 max-w-2xl mx-auto">
               {services.map((service) => (
-                <div
+                <motion.div
                   key={service.id}
-                  className={`relative flex items-center gap-4 rounded-lg border p-4 cursor-pointer hover:border-primary transition-colors ${
-                    selectedService === service.id ? "border-primary bg-primary/5" : ""
+                  variants={serviceVariants}
+                  whileHover="hover"
+                  className={`relative flex items-center gap-4 rounded-xl border p-6 cursor-pointer transition-all duration-300 ${
+                    selectedService === service.id 
+                      ? "border-primary bg-primary/5 shadow-lg shadow-primary/10" 
+                      : "hover:border-primary/50 hover:shadow-md"
                   }`}
                   onClick={() => setSelectedService(service.id)}
                 >
-                  <div className={`h-4 w-4 rounded-full border-2 ${
-                    selectedService === service.id ? "border-primary bg-primary" : ""
+                  <div className={`h-5 w-5 rounded-full border-2 transition-all duration-300 ${
+                    selectedService === service.id 
+                      ? "border-primary bg-primary scale-110" 
+                      : "border-muted-foreground"
                   }`} />
                   <div>
-                    <h3 className="font-medium">{service.name}</h3>
+                    <h3 className="font-medium text-lg mb-1">{service.name}</h3>
                     <p className="text-sm text-muted-foreground">{service.description}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
-            <Button
-              className="w-full"
-              disabled={!selectedService}
-              onClick={handleNext}
-            >
-              Continue <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </div>
+            <div className="max-w-2xl mx-auto">
+              <Button
+                className="w-full h-12 text-base transition-all duration-300 hover:scale-[1.02]"
+                disabled={!selectedService}
+                onClick={handleNext}
+              >
+                Continue <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          </motion.div>
         )}
 
         {currentStep === 2 && (
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-2xl font-semibold mb-2">Your Information</h2>
-              <p className="text-muted-foreground">Please provide your contact details for the appointment.</p>
+          <motion.div 
+            className="space-y-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <div className="text-center max-w-xl mx-auto">
+              <h2 className="text-2xl font-semibold mb-3">Your Information</h2>
+              <p className="text-muted-foreground">Please provide your contact details and preferred schedule.</p>
             </div>
 
-            <div className="space-y-6">
-              <div className="grid gap-4 md:grid-cols-2">
+            <div className="max-w-2xl mx-auto space-y-8">
+              {/* Personal Information with Icons */}
+              <div className="grid gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">First Name</label>
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    <User className="h-4 w-4 text-primary" />
+                    First Name
+                  </label>
                   <input
                     type="text"
-                    className="w-full rounded-lg border px-3 py-2"
+                    className="w-full rounded-lg border px-3 py-2 transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
                     value={formData.firstName}
                     onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    placeholder="Enter your first name"
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Last Name</label>
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    <User className="h-4 w-4 text-primary" />
+                    Last Name
+                  </label>
                   <input
                     type="text"
-                    className="w-full rounded-lg border px-3 py-2"
+                    className="w-full rounded-lg border px-3 py-2 transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
                     value={formData.lastName}
                     onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    placeholder="Enter your last name"
                     required
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Phone Number</label>
+                <label className="text-sm font-medium flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-primary" />
+                  Phone Number
+                </label>
                 <input
                   type="tel"
-                  className="w-full rounded-lg border px-3 py-2"
+                  className="w-full rounded-lg border px-3 py-2 transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="Enter your phone number"
                   required
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Email Address</label>
+                <label className="text-sm font-medium flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-primary" />
+                  Email Address
+                </label>
                 <input
                   type="email"
-                  className="w-full rounded-lg border px-3 py-2"
+                  className="w-full rounded-lg border px-3 py-2 transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="Enter your email address"
                   required
                 />
               </div>
 
+              {/* Date and Time Selection with enhanced styling */}
               <div className="grid gap-6 md:grid-cols-2">
-                {/* Calendar */}
-                <div className="rounded-lg border bg-card">
+                <div className="rounded-xl border bg-card shadow-sm transition-all duration-300 hover:shadow-md">
                   <div className="border-b p-4">
-                    <h3 className="font-medium">Select Date</h3>
+                    <h3 className="font-medium flex items-center gap-2">
+                      <Calendar className="h-4 w-4 text-primary" />
+                      Select Date
+                    </h3>
                   </div>
-                  <div className="p-4">
+                  <div className="p-4 flex justify-center">
                     <DatePicker
                       selected={selectedDate}
                       onChange={(date) => setSelectedDate(date)}
@@ -243,89 +341,107 @@ const BookAppointment = () => {
                   </div>
                 </div>
 
-                {/* Time Slots */}
-                <div className="rounded-lg border bg-card">
+                <div className="rounded-xl border bg-card shadow-sm transition-all duration-300 hover:shadow-md">
                   <div className="border-b p-4">
-                    <h3 className="font-medium">Select Time</h3>
+                    <h3 className="font-medium flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-primary" />
+                      Select Time
+                    </h3>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 p-4">
+                  <div className="grid grid-cols-2 gap-3 p-4">
                     {timeSlots.map((time) => (
-                      <div
+                      <motion.div
                         key={time}
-                        className={`flex items-center justify-center rounded-lg border p-2 cursor-pointer hover:border-primary transition-colors ${
-                          selectedTime === time ? "border-primary bg-primary/5" : ""
+                        whileHover={{ scale: 1.05 }}
+                        className={`flex items-center justify-center rounded-lg border p-3 cursor-pointer transition-all duration-300 ${
+                          selectedTime === time 
+                            ? "border-primary bg-primary/5 shadow-md" 
+                            : "hover:border-primary/50 hover:bg-primary/5"
                         }`}
                         onClick={() => setSelectedTime(time)}
                       >
-                        <span className="text-sm">{time}</span>
-                      </div>
+                        <span className="text-sm font-medium">{time}</span>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
               </div>
             </div>
 
-            <Button
-              className="w-full"
-              disabled={!formData.firstName || !formData.lastName || !formData.phone || !formData.email || !selectedDate || !selectedTime}
-              onClick={handleNext}
-            >
-              Continue <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </div>
+            <div className="max-w-2xl mx-auto">
+              <Button
+                className="w-full h-12 text-base transition-all duration-300 hover:scale-[1.02]"
+                disabled={!formData.firstName || !formData.lastName || !formData.phone || !formData.email || !selectedDate || !selectedTime}
+                onClick={handleNext}
+              >
+                Continue <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          </motion.div>
         )}
 
         {currentStep === 3 && (
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-2xl font-semibold mb-2">Confirmation</h2>
+          <motion.div 
+            className="space-y-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold mb-3">Confirm Your Appointment</h2>
               <p className="text-muted-foreground">Please review your appointment details before confirming.</p>
             </div>
 
-            <div className="rounded-lg border bg-card">
+            <div className="rounded-xl border bg-card shadow-sm">
               <div className="border-b p-4">
-                <h3 className="font-medium">Appointment Details</h3>
+                <h3 className="font-medium flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-primary" />
+                  Appointment Details
+                </h3>
               </div>
               <div className="divide-y">
-                <div className="grid grid-cols-2 p-4">
+                <div className="grid grid-cols-2 p-6">
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Service</p>
-                    <p className="font-medium">{getSelectedService()?.name}</p>
+                    <p className="font-medium text-lg">{getSelectedService()?.name}</p>
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Schedule</p>
-                    <p className="font-medium">
+                    <p className="font-medium text-lg">
                       {selectedDate ? format(selectedDate, 'MMMM d, yyyy') : ''} at {selectedTime}
                     </p>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 p-4">
+                <div className="grid grid-cols-2 p-6">
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Name</p>
-                    <p className="font-medium">{formData.firstName} {formData.lastName}</p>
+                    <p className="font-medium text-lg">{formData.firstName} {formData.lastName}</p>
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Contact</p>
-                    <p className="font-medium">{formData.phone}</p>
+                    <p className="font-medium text-lg">{formData.phone}</p>
                     <p className="text-sm text-muted-foreground">{formData.email}</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-lg border bg-blue-50 p-4">
-              <p className="text-sm text-blue-600">
-                By confirming this appointment, you agree to our terms and conditions. A confirmation email will be sent to your email address.
+            <div className="rounded-xl border bg-blue-50 p-6">
+              <p className="text-sm text-blue-600 leading-relaxed">
+                By confirming this appointment, you agree to our terms and conditions. A confirmation email will be sent to your email address with additional instructions.
               </p>
             </div>
 
             <form onSubmit={handleSubmit}>
-              <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
-                <Check className="mr-2 h-4 w-4" /> Confirm Appointment
+              <Button 
+                type="submit" 
+                className="w-full h-12 text-base bg-green-600 hover:bg-green-700 transition-all duration-300 hover:scale-[1.02]"
+              >
+                <Check className="mr-2 h-5 w-5" /> Confirm Appointment
               </Button>
             </form>
-          </div>
+          </motion.div>
         )}
       </div>
 
@@ -379,7 +495,7 @@ const BookAppointment = () => {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
