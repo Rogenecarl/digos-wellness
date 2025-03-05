@@ -19,6 +19,7 @@ import { useState, useEffect } from "react";
 import { Toaster } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import AuthModal from "@/components/ui/auth-modal";
 
 const recentBlogs = [
   {
@@ -76,6 +77,8 @@ const serviceItems = [
 
 const DefaultLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authMode, setAuthMode] = useState("login");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -94,6 +97,11 @@ const DefaultLayout = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
+
+  const handleAuthClick = (mode) => {
+    setAuthMode(mode);
+    setShowAuthModal(true);
+  };
 
   return (
     <div className="min-h-screen bg-background scale-95 origin-top">
@@ -122,6 +130,14 @@ const DefaultLayout = () => {
           }
         }}
       />
+      
+      {/* Auth Modal */}
+      <AuthModal 
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        initialMode={authMode}
+      />
+
       {/* Navigation Bar */}
       <header className="sticky top-0 z-50 border-b bg-background/98 backdrop-blur-none supports-[backdrop-filter]:bg-background/98 transition-all duration-300">
         <div className="container mx-auto max-w-[1800px] flex h-14 items-center justify-between px-2">
@@ -160,13 +176,13 @@ const DefaultLayout = () => {
               <Button 
                 variant="ghost" 
                 className="text-sm font-medium hover:text-violet-500 transition-all duration-300 hover:-translate-y-0.5"
-                onClick={() => navigate("/login")}
+                onClick={() => handleAuthClick("login")}
               >
                 Log In
               </Button>
               <Button 
                 className="bg-violet-500 text-white hover:bg-violet-600 transition-all duration-300 hover:scale-105"
-                onClick={() => navigate("/signup")}
+                onClick={() => handleAuthClick("signup")}
               >
                 Sign Up
               </Button>
@@ -178,7 +194,7 @@ const DefaultLayout = () => {
             <Button
               variant="ghost"
               className="text-sm font-medium hover:text-violet-500 transition-all duration-300"
-              onClick={() => navigate("/login")}
+              onClick={() => handleAuthClick("login")}
             >
               Log In
             </Button>
@@ -220,7 +236,10 @@ const DefaultLayout = () => {
                 <div className="pt-2 border-t">
                   <Button 
                     className="w-full bg-violet-500 text-white hover:bg-violet-600 transition-all duration-300"
-                    onClick={() => navigate("/signup")}
+                    onClick={() => {
+                      handleAuthClick("signup");
+                      setIsMobileMenuOpen(false);
+                    }}
                   >
                     Sign Up
                   </Button>
@@ -334,7 +353,7 @@ const DefaultLayout = () => {
                     <p className="mb-3 text-xs text-muted-foreground">
                       State-of-the-art facilities and expert healthcare professionals
                     </p>
-                    <Button size="sm" className="w-full bg-violet-500 text-xs hover:bg-violet-600">
+                    <Button size="sm" className="w-full bg-blue-500 text-xs hover:bg-blue-600">
                       Book Appointment
                     </Button>
                   </div>
@@ -351,7 +370,7 @@ const DefaultLayout = () => {
                     <p className="mb-3 text-xs text-muted-foreground">
                       Protect your family with comprehensive healthcare coverage
                     </p>
-                    <Button size="sm" className="w-full bg-violet-500 text-xs hover:bg-violet-600">
+                    <Button size="sm" className="w-full bg-blue-500 text-xs hover:bg-blue-600">
                       Learn More
                     </Button>
                   </div>
