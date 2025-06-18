@@ -1,4 +1,4 @@
-# DIGOS Wellness Capstone
+# DIGOS Wellness
 
 A modern web application built with Next.js for wellness solutions.
 
